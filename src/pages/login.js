@@ -33,7 +33,7 @@ function Login() {
   };
 
   const handleCancel = () => {
-    navigate("/signup");
+    navigate("/");
   };
 
   return (
