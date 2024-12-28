@@ -65,9 +65,6 @@ function Signup() {
           <button type="submit" className="btn submitbtn decoration black">
             Signup
           </button>
-          <button type="button" className="btn submitbtn decoration gray">
-            Cancel
-          </button>
         </div>
       </form>
     </div>
