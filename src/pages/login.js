@@ -13,22 +13,22 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
+
     try {
       const response = await axios.post("http://localhost:3001/login", formData);
-      console.log(response.data);
-
       if (response.data.success) {
-        setFormData({ email: "", password: "" }); 
-        setMessage("")
-        alert("Login successful")
+        setFormData({ email: "", password: "" });
+        alert("Login successful");
         setTimeout(() => {
           navigate("/home");
         }, 2000);
+      } else {
+        setMessage(response.data.message);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
       setMessage(errorMessage);
-      console.log(error);
     }
   };
 
@@ -58,7 +58,7 @@ function Login() {
           className="formitem"
           required
         />
-        {message && <div className="error-message red">{message}</div>} 
+        {message && <div className="error-message red">{message}</div>}
 
         <div className="form-buttons">
           <button type="submit" className="btn submitbtn decoration black">

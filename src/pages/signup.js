@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Initializing useNavigate
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,21 +16,16 @@ function Signup() {
     try {
       const response = await axios.post("http://localhost:3001/signup", formData);
       setMessage(response.data.message);
-      
-      // Show alert with the message
       alert(response.data.message);
 
-      // If signup is successful, navigate to login after a short delay
       if (response.data.success) {
         setTimeout(() => {
-          navigate("/login"); // Navigate to the login page
-        }, 2000); // Wait 2 seconds before redirecting (optional)
+          navigate("/login");
+        }, 2000);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
       setMessage(errorMessage);
-      
-      // Show the error message in the alert
       alert(errorMessage);
     }
   };
