@@ -14,7 +14,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/signup", formData);
+      const response = await axios.post("http://localhost:3001/signup", formData);
       setMessage(response.data.message);
       
       // Show alert with the message
